@@ -1,13 +1,14 @@
 import Message.Message;
 import Steps.Steps;
 import User.User;
+import Utils.Listener;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import Utils.Screenshoter;
 
-
+@Listeners(Listener.class)
 public class AddMailToSpamTest {
 
     private Steps steps;
@@ -35,8 +36,6 @@ public class AddMailToSpamTest {
     public void loginTest()
     {
         steps.login(user.getUsername(), user.getPassword());
-        if(!steps.isLoggedIn(user.getUserEmail()))
-            Screenshoter.takeScreenshot();
         Assert.assertTrue(steps.isLoggedIn(user.getUserEmail()));
         steps.logout();
     }
@@ -46,8 +45,6 @@ public class AddMailToSpamTest {
     {
         steps.login(user.getUsername(), user.getPassword());
         steps.sendMail(message);
-        if(!steps.checkSentFolder(message))
-            Screenshoter.takeScreenshot();
         Assert.assertTrue(steps.checkSentFolder(message));//check that the e-mail is present in "sent" folder
         steps.logout();
     }
@@ -58,8 +55,6 @@ public class AddMailToSpamTest {
         steps.login(user.getUsername(), user.getPassword());
         steps.sendMail(message);
         steps.addMailToSpam(message);
-        if(!steps.checkSpamFolder(message))
-            Screenshoter.takeScreenshot();
         Assert.assertTrue(steps.checkSpamFolder(message));
         steps.logout();
     }
