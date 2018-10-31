@@ -33,14 +33,17 @@ public class User {
         public UserBuilder(String USER_EMAIL) {
             this.USER_EMAIL = USER_EMAIL;
         }
+
         public UserBuilder withUserName(String USERNAME) {
             this.USERNAME = USERNAME;
             return this;
         }
+
         public UserBuilder withPassword(String PASSWORD) {
             this.PASSWORD = PASSWORD;
             return this;
         }
+        
         public User build() {
             User user = new User(this);
             return user;
