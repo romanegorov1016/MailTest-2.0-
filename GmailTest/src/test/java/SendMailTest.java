@@ -1,13 +1,15 @@
 import Message.Message;
 import Steps.Steps;
 import User.User;
+import Utils.Listener;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import Utils.Screenshoter;
 
 
+@Listeners(Listener.class)
 public class SendMailTest {
 
     private Steps steps;
@@ -35,9 +37,7 @@ public class SendMailTest {
     public void loginTest()
     {
         steps.login(user.getUsername(), user.getPassword());
-        if(!steps.isLoggedIn(user.getUserEmail()))
-            Screenshoter.takeScreenshot();
-        Assert.assertTrue(steps.isLoggedIn(user.getUserEmail()));
+        Assert.assertTrue(steps.isLoggedIn("22"));
         steps.logout();
     }
 
@@ -46,8 +46,6 @@ public class SendMailTest {
     {
         steps.login(user.getUsername(), user.getPassword());
         steps.addMailToDrafts(message);
-        if(!steps.checkDrafts(message))
-            Screenshoter.takeScreenshot();
         Assert.assertTrue(steps.checkDrafts(message));//check that the e-mail is present in "drafts" folder
         steps.logout();
     }
@@ -58,8 +56,6 @@ public class SendMailTest {
         steps.login(user.getUsername(), user.getPassword());
         steps.addMailToDrafts(message);
         steps.sendMail(message);
-        if(steps.checkDrafts(message))
-            Screenshoter.takeScreenshot();
         Assert.assertFalse(steps.checkDrafts(message));//check that the e-mail is disappeared from drafts folder
         steps.logout();
     }
@@ -70,8 +66,6 @@ public class SendMailTest {
         steps.login(user.getUsername(), user.getPassword());
         steps.addMailToDrafts(message);
         steps.sendMail(message);
-        if(!steps.checkSentFolder(message))
-            Screenshoter.takeScreenshot();
         Assert.assertTrue(steps.checkSentFolder(message));//check that the e-mail is present in "sent" folder
         steps.logout();
     }
