@@ -46,7 +46,7 @@ public class AddMailToTrashTest {
     {
         steps.login(user.getUsername(), user.getPassword());
         steps.sendMail(message);
-        Assert.assertTrue(steps.checkSentFolder(message));//check that the e-mail is present in "sent" folder
+        Assert.assertTrue(steps.checkSentFolder(message));
         steps.logout();
     }
 
