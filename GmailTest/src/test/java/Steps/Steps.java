@@ -23,11 +23,11 @@ public class Steps {
         loginPage.login(username, password);
     }
 
-    public boolean isLoggedIn(String username)
+    public boolean isLoggedIn(String userEmail)
     {
         LoginPage loginPage = new LoginPage(driver);
-        String actualUsername = loginPage.getLoggedInUserName().trim().toLowerCase();
-        return actualUsername.equals(username);
+        String actualUserEmail = loginPage.getLoggedInUserEmail().trim().toLowerCase();
+        return actualUserEmail.equals(userEmail);
     }
 
     public void addMailToDrafts(Message message)
