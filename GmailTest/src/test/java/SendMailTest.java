@@ -37,7 +37,7 @@ public class SendMailTest {
     public void loginTest()
     {
         steps.login(user.getUsername(), user.getPassword());
-        Assert.assertTrue(steps.isLoggedIn("22"));
+        Assert.assertTrue(steps.isLoggedIn(user.getUserEmail()));
         steps.logout();
     }
 
