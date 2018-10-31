@@ -45,7 +45,7 @@ public class LoginPage extends AbstractPage {
         submitButton.click();
     }
 
-    public String getLoggedInUserName()
+    public String getLoggedInUserEmail()
     {
         wait.until(ExpectedConditions.visibilityOf(userMail));
         highlightElement(userMail);
